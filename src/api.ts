@@ -1,7 +1,10 @@
 import axios from "axios";
 
+// In development we talk to the Vite proxy (`/api` → localhost:8000).
+// In production (Netlify), set VITE_API_BASE_URL to your Render backend URL,
+// e.g. https://financial-health-backend-xxpb.onrender.com
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "/api",
 });
 
 export function setAuthToken(token: string | null) {
